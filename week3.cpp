@@ -64,6 +64,34 @@ void contrastStreching(const GrayscaleImage &I) {
   O.Save("Images/contrastStreching.png");
 }
 
+void histeq(const GrayscaleImage &I) {
+  GrayscaleImage O(I.GetWidth(), I.GetHeight());
+  int highest = 255;
+  int pixels = I.GetWidth() * I.GetHeight();
+  int count[256] = {};
+  double pdf[256], cdf[256];
+  int rep[256];
+
+  for (int y = 0; y < O.GetHeight(); y++)
+    for (int x = 0; x < O.GetWidth(); x++)
+      count[I.Get(x, y)]++;
+
+  pdf[0] = (double)count[0] / (pixels);
+  cdf[0] = pdf[0];
+  rep[0] = round(cdf[0] * highest);
+  for (int i = 1; i <= highest; i++) {
+    pdf[i] = (double)count[i] / (pixels);
+    cdf[i] = cdf[i - 1] + pdf[i];
+    rep[i] = round(cdf[i] * highest);
+  }
+
+  for (int y = 0; y < O.GetHeight(); y++)
+    for (int x = 0; x < O.GetWidth(); x++)
+      O(x, y) = rep[I.Get(x, y)];
+
+  O.Save("Images/histeq.png");
+}
+
 int main() {
   GrayscaleImage I;
   I.Load("lena.png");
@@ -72,6 +100,7 @@ int main() {
   gamma(I, 0.5);
   inverse(I);
   contrastStreching(I);
+  histeq(I);
 
   return 0;
 }
