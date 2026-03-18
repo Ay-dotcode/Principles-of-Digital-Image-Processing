@@ -6,7 +6,7 @@ using namespace std;
 
 int main() {
   ColorImage input, output;
-  input.Load("lena.png");
+  input.Load("Images/lena.png");
 
   int input_w = input.GetWidth();
   int input_h = input.GetHeight();
@@ -28,7 +28,7 @@ int main() {
     }
   }
 
-  output.Save("nearest_neigbor.png");
+  output.Save("Images/nearest_neigbor.png");
 
   return 0;
 }
