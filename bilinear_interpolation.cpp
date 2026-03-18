@@ -5,7 +5,7 @@ using namespace std;
 
 int main() {
   GrayscaleImage I, O;
-  I.Load("Images/lena.png");
+  I.Load("lena.png");
   I.Save("Images/grayscale.png");
   int Iw = I.GetWidth(), Ih = I.GetHeight();
   int Ow = O.GetWidth(), Oh = O.GetHeight();

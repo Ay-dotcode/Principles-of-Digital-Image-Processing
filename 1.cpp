@@ -4,7 +4,7 @@ using namespace std;
 
 int main() {
   ColorImage img;
-  img.Load("Images/lena.png");
+  img.Load("lena.png");
 
   int w = img.GetWidth();
   int h = img.GetHeight();

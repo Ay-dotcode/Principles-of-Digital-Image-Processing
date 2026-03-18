@@ -6,7 +6,7 @@ using namespace std;
 
 int main() {
   ColorImage input, output;
-  input.Load("Images/lena.png");
+  input.Load("lena.png");
 
   int input_w = input.GetWidth();
   int input_h = input.GetHeight();
