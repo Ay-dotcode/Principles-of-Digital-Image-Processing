@@ -49,10 +49,17 @@ void inverse(const GrayscaleImage &I) {
 void contrastStreching(const GrayscaleImage &I) {
   GrayscaleImage O(I.GetWidth(), I.GetHeight());
   int pixels = pow(2, 8) - 1;
+  int minVal, maxVal;
+  minVal = maxVal = I.Get(0, 0);
+  for (int y = 0; y < O.GetHeight(); y++)
+    for (int x = 0; x < O.GetWidth(); x++) {
+      maxVal = I.Get(x, y) > maxVal ? I.Get(x, y) : maxVal;
+      minVal = I.Get(x, y) < minVal ? I.Get(x, y) : minVal;
+    }
 
   for (int y = 0; y < O.GetHeight(); y++)
     for (int x = 0; x < O.GetWidth(); x++)
-      O(x, y) = (I.Get(x, y) - 0) * pixels / 255 - 0;
+      O(x, y) = (I.Get(x, y) - minVal) * pixels / (maxVal - minVal);
 
   O.Save("Images/contrastStreching.png");
 }
