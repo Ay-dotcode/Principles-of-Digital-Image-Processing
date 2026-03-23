@@ -1,4 +1,4 @@
-# COMPXX5 / EE431 — Principles of Digital Image Processing
+# Principles of Digital Image Processing
 
 A collection of C++ programs covering foundational digital image processing techniques, written as coursework exercises. All programs use a custom, header-only image library (`image.h`) built on top of **libpng**.
 
