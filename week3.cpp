@@ -95,8 +95,8 @@ void histeq(const GrayscaleImage &I) {
 int main() {
   GrayscaleImage I;
   I.Load("lena.png");
-  
-  brightness(I, -30.5);
+
+  brightness(I, -25.5);
   contrast(I, 1.2);
   gamma(I, 0.5);
   inverse(I);
