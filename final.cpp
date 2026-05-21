@@ -24,6 +24,7 @@ void segment(const ColorImage &img) {
     }
   }
   s = s / (img.GetHeight() * img.GetWidth());
+  s *= 255;
 
   out = img;
   for (int y = 0; y < img.GetHeight(); y++)
