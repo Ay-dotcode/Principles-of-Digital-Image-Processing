@@ -3,7 +3,8 @@
 using namespace std;
 
 void segment(const ColorImage &img) {
-  double s = 0;
+  double s[img.GetWidth()][GetHeight()];
+  double segment = 0;
   GrayscaleImage out(img.GetWidth(), img.GetHeight());
 
   for (int y = 0; y < img.GetHeight(); y++) {
@@ -20,16 +21,18 @@ void segment(const ColorImage &img) {
 
       if (avg == 0)
         continue;
-      s += (max - min) / avg;
+      s[x][y] = (max - min) / avg;
+      segment += s[x][y];
     }
   }
-  s = s / (img.GetHeight() * img.GetWidth());
-  s *= 255;
+
+  
+  segment = segment / (img.GetHeight() * img.GetWidth());
 
   out = img;
   for (int y = 0; y < img.GetHeight(); y++)
     for (int x = 0; x < img.GetWidth(); x++)
-      out(x, y) = out(x, y) > s ? 255 : 0;
+      out(x, y) = s[x][y] > segment ? 255 : 0;
   out.Save("final.png");
 }
 
