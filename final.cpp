@@ -3,7 +3,7 @@
 using namespace std;
 
 void segment(const ColorImage &img) {
-  double s[img.GetWidth()][GetHeight()];
+  double s[img.GetWidth()][img.GetHeight()];
   double segment = 0;
   GrayscaleImage out(img.GetWidth(), img.GetHeight());
 
