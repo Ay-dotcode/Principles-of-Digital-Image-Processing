@@ -20,7 +20,7 @@ void segment(const ColorImage &img) {
       min = min < pixel.b ? min : pixel.b;
 
       if (avg == 0)
-        continue;
+        s[x][y] = 0;
       s[x][y] = (max - min) / avg;
       segment += s[x][y];
     }
@@ -28,10 +28,9 @@ void segment(const ColorImage &img) {
 
   segment = segment / (img.GetHeight() * img.GetWidth());
 
-  out = img;
   for (int y = 0; y < img.GetHeight(); y++)
     for (int x = 0; x < img.GetWidth(); x++)
-      out(x, y) = segment > s[x][y] ? 255 : 0;
+      out(x, y) = s[x][y] > segment ? 255 : 0;
   out.Save("Images/final.png");
 }
 
