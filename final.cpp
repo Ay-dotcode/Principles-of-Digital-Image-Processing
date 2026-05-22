@@ -26,14 +26,13 @@ void segment(const ColorImage &img) {
     }
   }
 
-  
   segment = segment / (img.GetHeight() * img.GetWidth());
 
   out = img;
   for (int y = 0; y < img.GetHeight(); y++)
     for (int x = 0; x < img.GetWidth(); x++)
-      out(x, y) = s[x][y] > segment ? 255 : 0;
-  out.Save("final.png");
+      out(x, y) = segment > s[x][y] ? 255 : 0;
+  out.Save("Images/final.png");
 }
 
 int main() {
